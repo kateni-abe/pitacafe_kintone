@@ -1,19 +1,15 @@
 /* Google FontsからNoto Sans Japanese (weight: 400) を読み込む */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap");
 
-/* 全体のベースフォントを設定 (より強力なセレクタと!importantで強制適用) */
+/* === 全体のベースフォントと基本設定 === */
 .gaia-argoui-body,
 body {
   font-family: "Noto Sans JP", sans-serif !important;
   font-weight: 400 !important;
-}
-
-/* 基本のフォントサイズ */
-body {
   font-size: 13px;
 }
 
-/* レコード一覧のヘッダーと各セルの文字サイズを13pxに変更 */
+/* === 基本の文字サイズを13pxに統一 === */
 .listView-control-gaia,
 .recordlist-gaia,
 button.recordlist-username-gaia,
@@ -21,21 +17,37 @@ button.recordlist-username-gaia,
 .fm-canvas-gaia,
 .input-label-cybozu,
 .subtable-row-label-gaia,
-button.user-link-cybozu, {
+button.user-link-cybozu,
+#record-gaia,
+.control-gaia .input-text-cybozu,
+.control-gaia input[type="email"],
+.control-gaia input[type="number"],
+.control-gaia input[type="password"],
+.control-gaia input[type="tel"],
+.control-gaia input[type="text"],
+.control-gaia input[type="url"],
+.fm-control-gaia .input-text-cybozu,
+.fm-control-gaia input[type="email"],
+.fm-control-gaia input[type="number"],
+.fm-control-gaia input[type="password"],
+.fm-control-gaia input[type="tel"],
+.fm-control-gaia input[type="text"],
+.fm-control-gaia input[type="url"],
+.gaia-app-statusbar-action-label {
   font-size: 13px !important;
 }
 
+/* === アプリの操作ボタン（保存など）のスタイル === */
 .gaia-app-statusbar-actionmenu-wrapper,
 .gaia-app-statusbar-action-label {
-    min-width: 80px;
-    max-width: 280px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 13px
-    border-radius: 6px;
+  min-width: 80px;
+  max-width: 280px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 6px;
 }
 
-/* 編集画面のフォントサイズ・角丸の設定 */
+/* === 編集画面の入力欄のスタイル === */
 .control-gaia .input-text-cybozu,
 .control-gaia input[type="email"],
 .control-gaia input[type="number"],
@@ -57,14 +69,12 @@ button.user-link-cybozu, {
   box-sizing: border-box;
   width: 100%;
   padding: 0 8px;
-  font-size: 13px;
   background-color: #f2f1ee99;
   color: #333;
 }
 
-/* 編集画面の入力欄のシャドウをなくす */
-.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container
-  .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,
+/* === 各種入力欄の標準の影を消す === */
+.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,
 .gaia-argoui-admin-app-flow-settings-changespace-searchbox-container input[type="text"],
 .gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatedescription-textarea,
 .gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatename-input,
@@ -93,24 +103,7 @@ button.user-link-cybozu, {
   box-shadow: none;
 }
 
-/* レコード詳細画面のフィールド内文字サイズを12pxに変更 */
-#record-gaia {
-  font-size: 13px !important;
-}
-
-/* 文字の上下中央揃え */
-.value-gaia {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-/* ヘッダーのカラー変更 */
-.qJNJu {
-  background: #ffffff !important;
-}
-
-/* レコード詳細画面の背景を白色に変更*/
+/* === 詳細画面の背景色を白に統一 === */
 #record-gaia,
 .showlayout-gaia,
 .row-gaia .control-gaia.control-group-gaia,
@@ -123,15 +116,15 @@ button.user-link-cybozu, {
   background-color: #ffffff;
 }
 
-/* 入力欄の背景色を変更、角丸に変更 */
+/* === 詳細画面の入力欄の背景色と角丸 === */
 .showlayout-gaia .row-gaia .control-value-gaia {
   background-color: #f2f1ee99;
   border-radius: 4px;
 }
 
-/* 表のレイアウトを調整 */
+/* === テーブル（サブテーブル）のヘッダースタイル === */
 .subtable-label-gaia,
-.subtable-operation-label-gaia{
+.subtable-operation-label-gaia {
   background-color: #989898;
   border-color: #989898;
   height: 30px;
@@ -139,7 +132,22 @@ button.user-link-cybozu, {
   box-sizing: border-box;
   text-align: left;
   font-weight: 400;
-  font-size: 13px;
   white-space: nowrap;
   border-width: 2px 2px 2px 0;
+}
+
+/* === その他レイアウト調整 === */
+/* 文字の上下中央揃え */
+.value-gaia {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* ヘッダーのカラー変更 
+  注意：.qJNJu はkintoneのアップデートで変更される可能性のあるクラス名です。
+  将来的にこのスタイルが効かなくなった場合は、開発者ツールで新しいクラス名を確認する必要があります。
+*/
+.qJNJu {
+  background: #ffffff !important;
 }
