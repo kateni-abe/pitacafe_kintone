@@ -47,11 +47,11 @@ button.user-link-cybozu {
   width: 100%;
   padding: 0 8px;
   font-size: 13px;
-  background-color: #fff;
+  background-color: #f2f1ee99;
   color: #333;
 }
 
-
+/* 編集画面の入力欄のシャドウをなくす */
 .gaia-argoui-admin-app-flow-settings-changespace-searchbox-container
   .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,
 .gaia-argoui-admin-app-flow-settings-changespace-searchbox-container input[type="text"],
@@ -80,7 +80,6 @@ button.user-link-cybozu {
 .tr-dialog .modal-dialog-content #linkdialog-onweb-tab-input,
 .tr-dialog .modal-dialog-content #linkdialog-text {
   box-shadow: none;
-  background-color: #f2f1ee99;
 }
 
 /* レコード詳細画面のフィールド内文字サイズを12pxに変更 */
