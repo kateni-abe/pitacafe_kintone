@@ -47,9 +47,10 @@ button.user-link-cybozu {
     background-color: #ffffff;
 }
 
-/* 入力欄の背景色を変更 */
+/* 入力欄の背景色を変更、角丸に変更 */
 .showlayout-gaia .row-gaia .control-value-gaia {
     background-color: #f2f1ee99;
+    border-radius: 3px;
 }
 
 /* 表のレイアウトを調整 */
