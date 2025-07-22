@@ -1,210 +1,188 @@
-"use strict";
+(function () {
+  'use strict';
 
-// 各タブボタンを作成
-function createButton(id, text) {
-  var button = document.createElement("button");
-  button.id = id;
-  button.innerHTML = text;
-  button.style.height = "40px";
-  button.style.width = "auto";
-  button.style.minWidth = "100px";
-  button.style.borderRadius = "10px 10px 0px 0px";
-  button.style.backgroundColor = "white";
-  button.style.border = "1px solid #CCCCCC";
-  button.style.fontSize = "12px";
-  button.style.paddingLeft = "10px";
-  button.style.paddingRight = "10px";
-  return button;
-}
-
-var ButtonAll = createButton("ButtonAll", "全表示");
-var ButtonA = createButton("ButtonA", "イベント概要");
-var ButtonB = createButton("ButtonB", "参加園・法人リスト");
-var ButtonC = createButton("ButtonC", "参加者");
-var ButtonD = createButton("ButtonD", "会場・備品手配");
-var ButtonE = createButton("ButtonE", "設営・撤収");
-var ButtonF = createButton("ButtonF", "予算管理");
-var ButtonG = createButton("ButtonG", "開催目的");
-var ButtonH = createButton("ButtonH", "議事録・メモ");
-var ButtonI = createButton("ButtonI", "告知関連");
-
-// kintoneのレコードイベントを監視し、レコードが表示される際に処理を実行する
-kintone.events.on(["app.record.create.show", "app.record.edit.show", "app.record.detail.show"], function (e) {
-  if (document.getElementById("eeButton") != null) {
-    return;
+  /**
+   * ボタン要素を生成する関数
+   * @param {string} id - ボタンのID
+   * @param {string} text - ボタンに表示するテキスト
+   * @returns {HTMLElement} 生成されたボタン要素
+   */
+  function createButton(id, text) {
+    const button = document.createElement('button');
+    button.id = id;
+    button.innerHTML = text;
+    // ボタンの共通スタイルを設定
+    Object.assign(button.style, {
+      height: '40px',
+      width: 'auto',
+      minWidth: '100px',
+      borderRadius: '10px 10px 0px 0px',
+      backgroundColor: 'white',
+      border: '1px solid #CCCCCC',
+      fontSize: '12px',
+      paddingLeft: '10px',
+      paddingRight: '10px',
+      cursor: 'pointer',
+      flexShrink: 0
+    });
+    return button;
   }
 
-  var tabSpace = kintone.app.record.getSpaceElement("TAB_ID");
+  /**
+   * フィールドの表示を切り替える関数
+   * @param {string} setInfo - 表示するタブの種類 ('All', 'a', 'b', ...)
+   * @param {object} buttons - 全てのボタン要素を含むオブジェクト
+   */
+  function tagView(setInfo, buttons) {
+    // --- 各タブで表示するフィールドのフィールドコードを配列で管理 ---
+    const fieldsForA = ['イベント概要'];
+    const fieldsForB = ['参加園リスト', '参加法人リスト'];
+    const fieldsForC = ['参加者リスト', '出席者数', 'キャンセル者数', '欠席者数', '合計'];
+    const fieldsForD = ['運営手配', '備品セットを検索', '備品リスト'];
+    const fieldsForE = ['設営撤収'];
+    const fieldsForF = ['予算集計', '費用明細表'];
+    const fieldsForG = ['開催目的'];
+    const fieldsForH = ['議事録・メモ'];
+    const fieldsForI = ['告知関連'];
 
-  tabSpace.appendChild(ButtonA);
-  tabSpace.appendChild(ButtonB);
-  tabSpace.appendChild(ButtonC);
-  tabSpace.appendChild(ButtonD);
-  tabSpace.appendChild(ButtonE);
-  tabSpace.appendChild(ButtonF);
-  tabSpace.appendChild(ButtonG);
-  tabSpace.appendChild(ButtonH);
-  tabSpace.appendChild(ButtonI);
-  tabSpace.appendChild(ButtonAll);
+    // 管理対象の全フィールドコードの重複をなくしたリストを作成
+    const allFields = [...new Set([
+      ...fieldsForA, ...fieldsForB, ...fieldsForC, ...fieldsForD,
+      ...fieldsForE, ...fieldsForF, ...fieldsForG, ...fieldsForH, ...fieldsForI
+    ])];
 
-  // 初期表示では全タグを表示
-  tagView("a");
-});
+    // --- 1. まず、関連する全てのフィールドを非表示にする ---
+    allFields.forEach(fieldCode => {
+      try {
+        kintone.app.record.setFieldShown(fieldCode, false);
+      } catch (err) {
+        console.error(`フィールドコード "${fieldCode}" の非表示に失敗しました。フォームに存在するか確認してください。`, err);
+      }
+    });
 
-// ボタンのクリックイベントハンドラーを定義する
-ButtonAll.onclick = function () {
-  tagView("All");
-  return false;
-};
-ButtonA.onclick = function () {
-  tagView("a");
-  return false;
-};
-ButtonB.onclick = function () {
-  tagView("b");
-  return false;
-};
-ButtonC.onclick = function () {
-  tagView("c");
-  return false;
-};
-ButtonD.onclick = function () {
-  tagView("d");
-  return false;
-};
-ButtonE.onclick = function () {
-  tagView("e");
-  return false;
-};
-ButtonF.onclick = function () {
-  tagView("f");
-  return false;
-};
-ButtonG.onclick = function () {
-  tagView("g");
-  return false;
-};
-ButtonH.onclick = function () {
-  tagView("h");
-  return false;
-};
-ButtonI.onclick = function () {
-  tagView("i");
-  return false;
-};
+    // --- 2. 全てのボタンの背景色をリセット ---
+    Object.values(buttons).forEach(button => {
+      button.style.background = 'white';
+    });
 
-// タグの表示を切り替える関数
-function tagView(setInfo) {
-  // すべてのボタンの背景色を白にする
-  ButtonA.style.background = "white";
-  ButtonB.style.background = "white";
-  ButtonC.style.background = "white";
-  ButtonD.style.background = "white";
-  ButtonE.style.background = "white";
-  ButtonF.style.background = "white";
-  ButtonG.style.background = "white";
-  ButtonH.style.background = "white";
-  ButtonI.style.background = "white";
-  ButtonAll.style.background = "white";
+    // --- 3. 選択されたタブに応じて、表示するフィールドを決定し、ボタンをハイライト ---
+    let fieldsToShow = [];
+    let activeButton;
 
-  // すべてのフィールドを非表示にする
-  kintone.app.record.setFieldShown("イベント概要", false);
-  kintone.app.record.setFieldShown("参加園リスト", false);
-  kintone.app.record.setFieldShown("参加法人リスト", false);
-  kintone.app.record.setFieldShown("参加者リスト", false);
-  kintone.app.record.setFieldShown("出席者数", false);
-  kintone.app.record.setFieldShown("キャンセル者数", false);
-  kintone.app.record.setFieldShown("合計", false);
-  kintone.app.record.setFieldShown("欠席者数", false);
-  kintone.app.record.setFieldShown("運営手配", false);
-  kintone.app.record.setFieldShown("備品セットを検索", false);
-  kintone.app.record.setFieldShown("備品リスト", false);
-  kintone.app.record.setFieldShown("設営撤収", false);
-  kintone.app.record.setFieldShown("予算集計", false);
-  kintone.app.record.setFieldShown("費用明細表", false);
-  kintone.app.record.setFieldShown("開催目的", false);
-  kintone.app.record.setFieldShown("議事録・メモ", false);
-  kintone.app.record.setFieldShown("告知関連", false);
+    switch (setInfo) {
+      case 'All':
+        fieldsToShow = allFields;
+        activeButton = buttons.ButtonAll;
+        break;
+      case 'a':
+        fieldsToShow = fieldsForA;
+        activeButton = buttons.ButtonA;
+        break;
+      case 'b':
+        fieldsToShow = fieldsForB;
+        activeButton = buttons.ButtonB;
+        break;
+      case 'c':
+        fieldsToShow = fieldsForC;
+        activeButton = buttons.ButtonC;
+        break;
+      case 'd':
+        fieldsToShow = fieldsForD;
+        activeButton = buttons.ButtonD;
+        break;
+      case 'e':
+        fieldsToShow = fieldsForE;
+        activeButton = buttons.ButtonE;
+        break;
+      case 'f':
+        fieldsToShow = fieldsForF;
+        activeButton = buttons.ButtonF;
+        break;
+      case 'g':
+        fieldsToShow = fieldsForG;
+        activeButton = buttons.ButtonG;
+        break;
+      case 'h':
+        fieldsToShow = fieldsForH;
+        activeButton = buttons.ButtonH;
+        break;
+      case 'i':
+        fieldsToShow = fieldsForI;
+        activeButton = buttons.ButtonI;
+        break;
+    }
+    
+    // 選択されたボタンの背景色を変更
+    if (activeButton) {
+      activeButton.style.background = '#eaeaea';
+    }
 
-  switch (setInfo) {
-    case "All":
-      // すべてのフィールドを表示する
-      kintone.app.record.setFieldShown("イベント概要", true);
-      kintone.app.record.setFieldShown("参加園リスト", true);
-      kintone.app.record.setFieldShown("参加法人リスト", true);
-      kintone.app.record.setFieldShown("出席者数", true);
-      kintone.app.record.setFieldShown("キャンセル者数", true);
-      kintone.app.record.setFieldShown("欠席者数", true);
-      kintone.app.record.setFieldShown("合計", true);
-      kintone.app.record.setFieldShown("参加者リスト", true);
-      kintone.app.record.setFieldShown("運営手配", true);
-      kintone.app.record.setFieldShown("備品セットを検索", true);
-      kintone.app.record.setFieldShown("備品リスト", true);
-      kintone.app.record.setFieldShown("予算集計", true);
-      kintone.app.record.setFieldShown("設営撤収", true);
-      kintone.app.record.setFieldShown("費用明細表", true);
-      kintone.app.record.setFieldShown("開催目的", true);
-      kintone.app.record.setFieldShown("議事録・メモ", true);
-      kintone.app.record.setFieldShown("告知関連", true);
-      ButtonAll.style.background = "#eaeaea";
-      break;
-    case "a":
-      ButtonA.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("イベント概要", true);
-      break;
-    case "b":
-      ButtonB.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("参加園リスト", true);
-      kintone.app.record.setFieldShown("参加法人リスト", true);
-      break;
-    case "c":
-      ButtonC.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("出席者数", true);
-      kintone.app.record.setFieldShown("キャンセル者数", true);
-      kintone.app.record.setFieldShown("欠席者数", true);
-      kintone.app.record.setFieldShown("合計", true);
-      kintone.app.record.setFieldShown("参加者リスト", true);
-      break;
-    case "d":
-      ButtonD.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("運営手配", true);
-      kintone.app.record.setFieldShown("備品セットを検索", true);
-      kintone.app.record.setFieldShown("備品リスト", true);
-      break;
-    case "e":
-      ButtonE.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("設営撤収", true);
-      break;
-    case "f":
-      ButtonF.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("予算集計", true);
-      kintone.app.record.setFieldShown("費用明細表", true);
-      break;
-    case "g":
-      ButtonG.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("開催目的", true);
-      break;
-    case "h":
-      ButtonH.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("議事録・メモ", true);
-      break;
-    case "i":
-      ButtonI.style.background = "#eaeaea";
-      kintone.app.record.setFieldShown("告知関連", true);
-      break;
+    // --- 4. 選択されたフィールドを表示する ---
+    fieldsToShow.forEach(fieldCode => {
+      try {
+        kintone.app.record.setFieldShown(fieldCode, true);
+      } catch (err) {
+        console.error(`フィールドコード "${fieldCode}" の表示に失敗しました。フォームに存在するか確認してください。`, err);
+      }
+    });
   }
 
-  return; // 処理の終了
-}
+  // レコードの作成・編集・詳細画面が表示された時のイベント
+  kintone.events.on(['app.record.create.show', 'app.record.edit.show', 'app.record.detail.show'], function (e) {
+    // --- ボタンの生成 ---
+    const buttons = {
+      ButtonA: createButton('ButtonA', 'イベント概要'),
+      ButtonB: createButton('ButtonB', '参加園・法人リスト'),
+      ButtonC: createButton('ButtonC', '参加者'),
+      ButtonD: createButton('ButtonD', '会場・備品手配'),
+      ButtonE: createButton('ButtonE', '設営・撤収'),
+      ButtonF: createButton('ButtonF', '予算管理'),
+      ButtonG: createButton('ButtonG', '開催目的'),
+      ButtonH: createButton('ButtonH', '議事録・メモ'),
+      ButtonI: createButton('ButtonI', '告知関連'),
+      ButtonAll: createButton('ButtonAll', '全表示')
+    };
 
-// レコード送信時の処理
-kintone.events.on(["app.record.create.submit", "app.record.edit.submit"], function (event) {
-  const record = event.record;
-  // receiptsテーブルのno欄を自動採番する
-  const count = record.参加者リスト.value.length;
-  for (let i = 0; i < count; i++) {
-    record.参加者リスト.value[i].value.no.value = i + 1;
-  }
+    // --- クリックイベントの設定 ---
+    Object.keys(buttons).forEach(key => {
+      const shortKey = key.replace('Button', ''); // 'ButtonA' -> 'A'
+      buttons[key].onclick = () => tagView(shortKey.toLowerCase(), buttons);
+    });
+    // 'All'ボタンだけは特別なので上書き
+    buttons.ButtonAll.onclick = () => tagView('All', buttons);
 
-  return event;
-});
+    // --- ボタンをスペースに配置 ---
+    const tabSpace = kintone.app.record.getSpaceElement('TAB_ID');
+    if (tabSpace) {
+      if (tabSpace.children.length === 0) {
+        tabSpace.style.display = 'flex';
+        tabSpace.style.flexWrap = 'wrap';
+        
+        Object.values(buttons).forEach(button => {
+          tabSpace.appendChild(button);
+        });
+      }
+    } else {
+      console.error('スペース要素 "TAB_ID" が見つかりません。フォーム設定を確認してください。');
+      return e;
+    }
+
+    // --- 初期表示 ---
+    tagView('a', buttons);
+
+    return e;
+  });
+
+  // レコード送信時の処理（参加者リストのNo.を自動採番）
+  kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], function (event) {
+    const record = event.record;
+    // 参加者リストテーブルが存在し、行がある場合のみ処理
+    if (record.参加者リスト && record.参加者リスト.value.length > 0) {
+      record.参加者リスト.value.forEach((row, index) => {
+        row.value.no.value = index + 1;
+      });
+    }
+    return event;
+  });
+
+})();
