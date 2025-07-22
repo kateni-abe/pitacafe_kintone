@@ -18,7 +18,8 @@ body {
 .recordlist-gaia,
 button.recordlist-username-gaia,
 .control-label-gaia,
-.fm-canvas-gaia .input-label-cybozu,
+.fm-canvas-gaia,
+.input-label-cybozu,
 .subtable-row-label-gaia,
 button.user-link-cybozu, {
   font-size: 13px !important;
