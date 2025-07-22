@@ -131,10 +131,10 @@
       ButtonB: createButton('ButtonB', '参加園・参加法人'),
       ButtonC: createButton('ButtonC', '参加者'),
       ButtonD: createButton('ButtonD', '会場・備品手配'),
-      ButtonF: createButton('ButtonE', '予算管理'),
-      ButtonG: createButton('ButtonF', '開催目的'),
-      ButtonH: createButton('ButtonG', '議事録・メモ'),
-      ButtonI: createButton('ButtonH', '告知関連'),
+      ButtonE: createButton('ButtonE', '予算管理'),
+      ButtonF: createButton('ButtonF', '開催目的'),
+      ButtonG: createButton('ButtonG', '議事録・メモ'),
+      ButtonH: createButton('ButtonH', '告知関連'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
 
