@@ -48,7 +48,8 @@ button.user-link-cybozu {
 .fm-canvas-gaia .input-label-cybozu,
 .subtable-row-label-gaia,
 .row-gaia .control-gaia.control-label-field-gaia,
-.gaia-argoui-app-info-content {
+.gaia-argoui-app-info-content,
+.editablelayout-gaia{
     background-color: #ffffff;
 }
 
