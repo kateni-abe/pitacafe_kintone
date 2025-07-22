@@ -13,7 +13,7 @@
     button.innerHTML = text;
     // ボタンの共通スタイルを設定
     Object.assign(button.style, {
-      height: '40px',
+      height: '35px',
       width: 'auto',
       minWidth: '100px',
       borderRadius: '10px 10px 0px 0px',
