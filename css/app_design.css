@@ -1,21 +1,22 @@
 body {
     display: flex;
-  align-items: center;
+    align-items: center;
     font-size: 14px;
 }
 
 /* レコード一覧のヘッダーと各セルの文字サイズを12ptに変更 */
 .listView-control-gaia,.recordlist-gaia  {
     display: flex;
-  align-items: center;
-  font-size: 12px !important;
+    align-items: center;
+    font-size: 12px !important;
 }
 
-button.recordlist-username-gaia
-{  display: flex;
-  align-items: center;
+button.recordlist-username-gaia{
+    display: flex;
+    align-items: center;
     font-size: 12px !important;
   }
+
 /* レコード詳細画面のフィールド内文字サイズを12ptに変更*/
 #record-gaia {
   background-color: #ffffff;
