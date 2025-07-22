@@ -129,7 +129,8 @@ button.user-link-cybozu, {
 }
 
 /* 表のレイアウトを調整 */
-.subtable-label-gaia {
+.subtable-label-gaia,
+.subtable-operation-label-gaia{
   background-color: #989898;
   border-color: #989898;
   height: 30px;
