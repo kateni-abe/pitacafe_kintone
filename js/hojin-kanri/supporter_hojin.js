@@ -19,11 +19,11 @@
       borderRadius: '4px 4px 4px 4px',
       backgroundColor: 'white',
       border: '1px solid #CCCCCC',
-      fontSize: '13px',
+      fontSize: '12px',
       paddingLeft: '10px',
       paddingRight: '10px',
-      marginLeft: '2px',
-      marginRight: '2px',
+      marginLeft: '1px',
+      marginRight: '1px',
       cursor: 'pointer',
       flexShrink: 0
     });
