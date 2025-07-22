@@ -30,3 +30,7 @@ button.recordlist-username-gaia
 .row-gaia .control-gaia.control-label-field-gaia {
     /* background-color:#ffffff; */
 }
+
+.gaia-argoui-app-info-content {
+    background-color: #ffffff;
+}
