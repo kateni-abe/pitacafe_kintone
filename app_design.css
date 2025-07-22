@@ -1,0 +1,10 @@
+/* レコード一覧のヘッダーと各セルの文字サイズを12ptに変更 */
+.recordlist-header-cell-gaia,
+.recordlist-cell-gaia {
+  font-size: 12px !important;
+}
+
+button.recordlist-username-gaia
+{
+    font-size: 12px !important;
+  }
