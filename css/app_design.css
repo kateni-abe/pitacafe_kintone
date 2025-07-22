@@ -9,7 +9,7 @@
 
 /* 基本のフォントサイズ */
 body {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 /* レコード一覧のヘッダーと各セルの文字サイズを12pxに変更 */
@@ -20,12 +20,12 @@ button.recordlist-username-gaia,
 .fm-canvas-gaia .input-label-cybozu, 
 .subtable-row-label-gaia,
 button.user-link-cybozu {
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 
 /* レコード詳細画面のフィールド内文字サイズを12pxに変更 */
 #record-gaia {
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 
 /* 文字の上下中央揃え */
@@ -67,7 +67,7 @@ button.user-link-cybozu {
     box-sizing: border-box;
     text-align: left;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
     border-width: 2px 2px 2px 0;
 }
