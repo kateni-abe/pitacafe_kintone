@@ -39,9 +39,9 @@
     const fieldsForB = ['案件一覧'];
     const fieldsForC = ['コミュニケーション履歴'];
     const fieldsForD = ['Field_trip_インターン_申込数・参加者数', '研修会・勉強会など_企画参加実績', '貸切利用_利用日'];
-    const fieldsForE = ['財務関連', '財務諸表', '財務諸表_2'];
-    const fieldsForF = ['法人担当者情報'];
-    const fieldsForG = ['請求書'];
+    const fieldsForE = ['請求書'];
+    const fieldsForF = ['財務関連', '財務諸表', '財務諸表_2'];
+    const fieldsForG = ['法人担当者情報'];
     const fieldsForH = ['関連園情報'];
 
     // 管理対象の全フィールドコードの重複をなくしたリストを作成
@@ -130,9 +130,9 @@
       ButtonB: createButton('ButtonB', '案件一覧'),
       ButtonC: createButton('ButtonC', 'コミュニケーション記録'),
       ButtonD: createButton('ButtonD', '企画参加・集客実績'),
-      ButtonE: createButton('ButtonE', '財務関連'),
-      ButtonF: createButton('ButtonF', '法人担当者情報'),
-      ButtonG: createButton('ButtonG', '請求書'),
+      ButtonE: createButton('ButtonE', '請求書'),
+      ButtonF: createButton('ButtonF', '情報財務関連'),
+      ButtonG: createButton('ButtonG', '法人担当者'),
       ButtonH: createButton('ButtonH', '関連園情報'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
