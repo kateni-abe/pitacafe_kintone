@@ -13,3 +13,42 @@
  * 値としてそのタグに対応する「進捗ステータス」の選択肢（配列）を定義してください。
  * 例: '案件タグA': ['ステータス1', 'ステータス2', 'ステータス3']
  */
+(function() {
+  "use strict";
+  // 案件タグごとに進捗ステータスの選択肢を定義
+  const statusOptions = {
+    'ぴたワーク': ['新規', '初回連絡済', '面談中', '条件提示', '内定', '成約', '失注', '来年度フォロー'],
+    'LINEコンサル': ['新規', '提案中', '見積提出', '受注', '納品', '完了', '失注'],
+    // 他のタグも必要に応じて追加
+  };
+
+  // この処理を実行するイベントを指定
+  const events = [
+    'app.record.create.show', // レコード作成画面の表示時
+    'app.record.edit.show',   // レコード編集画面の表示時
+    'app.record.create.change.Proposed_plan', // レコード作成画面で「Proposed_plan」フィールド変更時
+    'app.record.edit.change.Proposed_plan'    // レコード編集画面で「Proposed_plan」フィールド変更時
+  ];
+
+  kintone.events.on(events, function(event) {
+    const record = event.record;
+    const tag = record['Proposed_plan'].value;
+    const statusField = record['progress_status'];
+
+    // 選択肢を一旦すべてクリア（初期化）
+    statusField.options = {};
+
+    // 案件タグ（tag）がstatusOptionsに存在する場合、対応する選択肢をセット
+    if (statusOptions[tag]) {
+      statusOptions[tag].forEach(function(opt) {
+        statusField.options[opt] = true;
+      });
+    } else {
+      // 存在しない場合はデフォルトの選択肢をセット
+      statusField.options['選択してください'] = true;
+    }
+    
+    // イベントオブジェクトを返して処理を完了
+    return event;
+  });
+})();
