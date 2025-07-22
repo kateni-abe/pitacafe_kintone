@@ -5,42 +5,27 @@ body {
 }
 
 /* レコード一覧のヘッダーと各セルの文字サイズを12ptに変更 */
-.listView-control-gaia,.recordlist-gaia  {
+.listView-control-gaia,
+.recordlist-gaia,
+button.recordlist-username-gaia {
     display: flex;
     align-items: center;
     font-size: 12px !important;
 }
 
-button.recordlist-username-gaia{
-    display: flex;
-    align-items: center;
-    font-size: 12px !important;
-  }
-
 /* レコード詳細画面のフィールド内文字サイズを12ptに変更*/
 #record-gaia {
-  background-color: #ffffff;
   font-size: 12px !important;
 }
 
 /* レコード詳細画面の背景を白色に変更*/
-.showlayout-gaia {
-    background-color: #ffffff;
-}
-
-.row-gaia .control-gaia.control-group-gaia {
-    /* background-color:#ffffff; */
-    margin: 4px 8px
-}
-
-.control-label-gaia,.fm-canvas-gaia .input-label-cybozu,.subtable-row-label-gaia {
-    background-color: #ffffff;
-}
-
-.row-gaia .control-gaia.control-label-field-gaia {
-    /* background-color:#ffffff; */
-}
-
+#record-gaia,
+.showlayout-gaia,
+.row-gaia .control-gaia.control-group-gaia,
+.control-label-gaia,
+.fm-canvas-gaia .input-label-cybozu,
+.subtable-row-label-gaia,
+.row-gaia .control-gaia.control-label-field-gaia,
 .gaia-argoui-app-info-content {
     background-color: #ffffff;
 }
