@@ -132,9 +132,9 @@
       ButtonB: createButton('ButtonB', '案件一覧'),
       ButtonC: createButton('ButtonC', 'コミュニケーション記録'),
       ButtonD: createButton('ButtonD', '企画参加・集客実績'),
-      ButtonE: createButton('ButtonE', '請求書'),
-      ButtonF: createButton('ButtonF', '情報財務関連'),
-      ButtonG: createButton('ButtonG', '法人担当者'),
+      ButtonE: createButton('ButtonE', '請求書一覧'),
+      ButtonF: createButton('ButtonF', '財務関連'),
+      ButtonG: createButton('ButtonG', '法人担当者情報'),
       ButtonH: createButton('ButtonH', '関連園情報'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
