@@ -19,7 +19,7 @@
       borderRadius: '4px 4px 4px 4px',
       backgroundColor: 'white',
       border: '1px solid #CCCCCC',
-      fontSize: '12px',
+      fontSize: '13px',
       paddingLeft: '10px',
       paddingRight: '10px',
       marginLeft: '1px',
@@ -128,7 +128,7 @@
       ButtonC: createButton('ButtonC', 'コミュニケーション記録'),
       ButtonD: createButton('ButtonD', '企画参加・集客実績'),
       ButtonE: createButton('ButtonE', '園担当者情報'),
-      ButtonF: createButton('ButtonF', '請求書'),
+      ButtonF: createButton('ButtonF', '請求書一覧'),
       ButtonG: createButton('ButtonG', '法人概要'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
