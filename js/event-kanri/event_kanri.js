@@ -7,13 +7,13 @@ function createButton(id, text) {
   button.innerHTML = text;
   button.style.height = "40px";
   button.style.width = "auto";
-  button.style.minWidth = "120px";
+  button.style.minWidth = "100px";
   button.style.borderRadius = "10px 10px 0px 0px";
   button.style.backgroundColor = "white";
   button.style.border = "1px solid #CCCCCC";
   button.style.fontSize = "12px";
-  button.style.paddingLeft = "20px";
-  button.style.paddingRight = "20px";
+  button.style.paddingLeft = "10px";
+  button.style.paddingRight = "10px";
   return button;
 }
 
