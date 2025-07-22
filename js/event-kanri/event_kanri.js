@@ -19,7 +19,7 @@
       borderRadius: '10px 10px 0px 0px',
       backgroundColor: 'white',
       border: '1px solid #CCCCCC',
-      fontSize: '13px',
+      fontSize: '12px',
       paddingLeft: '10px',
       paddingRight: '10px',
       cursor: 'pointer',
@@ -132,7 +132,7 @@
     // --- ボタンの生成 ---
     const buttons = {
       ButtonA: createButton('ButtonA', 'イベント概要'),
-      ButtonB: createButton('ButtonB', '参加園・法人リスト'),
+      ButtonB: createButton('ButtonB', '参加園・参加法人'),
       ButtonC: createButton('ButtonC', '参加者'),
       ButtonD: createButton('ButtonD', '会場・備品手配'),
       ButtonE: createButton('ButtonE', '設営・撤収'),
