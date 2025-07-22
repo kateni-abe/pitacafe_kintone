@@ -5,7 +5,7 @@ body {
 /* レコード一覧のヘッダーと各セルの文字サイズを12ptに変更 */
 .listView-control-gaia,
 .recordlist-gaia,
-button.recordlist-username-gaia {
+button.recordlist-username-gaia,.control-label-gaia, .fm-canvas-gaia .input-label-cybozu, .subtable-row-label-gaia,button.user-link-cybozu  {
     font-size: 12px !important;
 }
 
