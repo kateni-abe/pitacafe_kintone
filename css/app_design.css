@@ -143,11 +143,3 @@ button.user-link-cybozu,
   align-items: center;
   height: 100%;
 }
-
-/* ヘッダーのカラー変更 
-  注意：.qJNJu はkintoneのアップデートで変更される可能性のあるクラス名です。
-  将来的にこのスタイルが効かなくなった場合は、開発者ツールで新しいクラス名を確認する必要があります。
-*/
-.qJNJu {
-  background: #ffffff !important;
-}
