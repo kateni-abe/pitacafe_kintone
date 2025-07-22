@@ -13,15 +13,25 @@ body {
   font-size: 13px;
 }
 
-/* レコード一覧のヘッダーと各セルの文字サイズを12pxに変更 */
+/* レコード一覧のヘッダーと各セルの文字サイズを13pxに変更 */
 .listView-control-gaia,
 .recordlist-gaia,
 button.recordlist-username-gaia,
 .control-label-gaia,
 .fm-canvas-gaia .input-label-cybozu,
 .subtable-row-label-gaia,
-button.user-link-cybozu {
+button.user-link-cybozu, {
   font-size: 13px !important;
+}
+
+.gaia-app-statusbar-actionmenu-wrapper,
+.gaia-app-statusbar-action-label {
+    min-width: 80px;
+    max-width: 280px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px
+    border-radius: 6px;
 }
 
 /* 編集画面のフォントサイズ・角丸の設定 */
