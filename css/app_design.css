@@ -1,56 +1,83 @@
 /* Google FontsからNoto Sans Japanese (weight: 400) を読み込む */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap");
 
 /* 全体のベースフォントを設定 (より強力なセレクタと!importantで強制適用) */
-.gaia-argoui-body, body {
-    font-family: "Noto Sans JP", sans-serif !important;
-    font-weight: 400 !important;
+.gaia-argoui-body,
+body {
+  font-family: "Noto Sans JP", sans-serif !important;
+  font-weight: 400 !important;
 }
 
 /* 基本のフォントサイズ */
 body {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 /* レコード一覧のヘッダーと各セルの文字サイズを12pxに変更 */
 .listView-control-gaia,
 .recordlist-gaia,
 button.recordlist-username-gaia,
-.control-label-gaia, 
-.fm-canvas-gaia .input-label-cybozu, 
+.control-label-gaia,
+.fm-canvas-gaia .input-label-cybozu,
 .subtable-row-label-gaia,
 button.user-link-cybozu {
-    font-size: 13px !important;
+  font-size: 13px !important;
 }
 
 /* 編集画面のフォントサイズ */
 .control-gaia .input-text-cybozu,
-.control-gaia input[type=email],
-.control-gaia input[type=number],
-.control-gaia input[type=password],
-.control-gaia input[type=tel],
-.control-gaia input[type=text],
-.control-gaia input[type=url],
+.control-gaia input[type="email"],
+.control-gaia input[type="number"],
+.control-gaia input[type="password"],
+.control-gaia input[type="tel"],
+.control-gaia input[type="text"],
+.control-gaia input[type="url"],
 .fm-control-gaia .input-text-cybozu,
-.fm-control-gaia input[type=email],
-.fm-control-gaia input[type=number],
-.fm-control-gaia input[type=password],
-.fm-control-gaia input[type=tel],
-.fm-control-gaia input[type=text],
-.fm-control-gaia input[type=url] {
-    border-color: #e3e7e8;
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 8px;
-    font-size: 13px;
-    background-color: #fff;
-    color: #333
+.fm-control-gaia input[type="email"],
+.fm-control-gaia input[type="number"],
+.fm-control-gaia input[type="password"],
+.fm-control-gaia input[type="tel"],
+.fm-control-gaia input[type="text"],
+.fm-control-gaia input[type="url"] {
+  border-color: #e3e7e8;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 8px;
+  font-size: 13px;
+  background-color: #fff;
+  color: #333;
 }
 
-.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container input[type=text],.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatedescription-textarea,.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatename-input,.gaia-components-forms-input .gaia-components-forms-input-form,.gaia-components-forms-textarea .gaia-components-forms-textarea-form,.gaia-ui-appselect-keyword input[type=text],.gaia-ui-appselect-selected,.gaia-ui-fieldselect-combobox input[type=text],.gaia-ui-formmaker-control-setting-appselect-searchbox .gaia-ui-formmaker-control-setting-appselect-searchbox-input,.input-date-cybozu .input-date-text-cybozu,.input-datetime-cybozu .input-date-text-cybozu,.input-text-outer-cybozu .input-text-cybozu,.input-text-outer-cybozu .textarea-cybozu,.input-time-cybozu .input-time-text-cybozu,.ocean-ntf-filterconfig-place .goog-combobox input[type=text],.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer .ocean-ntf-placesearchbox-selected-name,.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer input[type=text],.ocean-ui-comments-linkpopup-input,.recordlist-edit-decimal-gaia .recordlist-forms-number-gaia,.recordlist-edit-link-gaia .recordlist-forms-text-gaia,.recordlist-edit-multiple_line_text-gaia .recordlist-forms-textarea-gaia,.recordlist-edit-single_line_text-gaia .recordlist-forms-text-gaia,.tr-dialog .modal-dialog-content #linkdialog-email-tab-input,.tr-dialog .modal-dialog-content #linkdialog-onweb-tab-input,.tr-dialog .modal-dialog-content #linkdialog-text {
+.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container
+  .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,
+.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container input[type="text"],
+.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatedescription-textarea,
+.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatename-input,
+.gaia-components-forms-input .gaia-components-forms-input-form,
+.gaia-components-forms-textarea .gaia-components-forms-textarea-form,
+.gaia-ui-appselect-keyword input[type="text"],
+.gaia-ui-appselect-selected,
+.gaia-ui-fieldselect-combobox input[type="text"],
+.gaia-ui-formmaker-control-setting-appselect-searchbox .gaia-ui-formmaker-control-setting-appselect-searchbox-input,
+.input-date-cybozu .input-date-text-cybozu,
+.input-datetime-cybozu .input-date-text-cybozu,
+.input-text-outer-cybozu .input-text-cybozu,
+.input-text-outer-cybozu .textarea-cybozu,
+.input-time-cybozu .input-time-text-cybozu,
+.ocean-ntf-filterconfig-place .goog-combobox input[type="text"],
+.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer .ocean-ntf-placesearchbox-selected-name,
+.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer input[type="text"],
+.ocean-ui-comments-linkpopup-input,
+.recordlist-edit-decimal-gaia .recordlist-forms-number-gaia,
+.recordlist-edit-link-gaia .recordlist-forms-text-gaia,
+.recordlist-edit-multiple_line_text-gaia .recordlist-forms-textarea-gaia,
+.recordlist-edit-single_line_text-gaia .recordlist-forms-text-gaia,
+.tr-dialog .modal-dialog-content #linkdialog-email-tab-input,
+.tr-dialog .modal-dialog-content #linkdialog-onweb-tab-input,
+.tr-dialog .modal-dialog-content #linkdialog-text {
   box-shadow: none;
 }
 
@@ -63,12 +90,12 @@ button.user-link-cybozu {
 .value-gaia {
   display: flex;
   align-items: center;
-  height: 100%; 
+  height: 100%;
 }
 
 /* ヘッダーのカラー変更 */
 .qJNJu {
-    background: #ffffff !important;
+  background: #ffffff !important;
 }
 
 /* レコード詳細画面の背景を白色に変更*/
@@ -80,26 +107,26 @@ button.user-link-cybozu {
 .subtable-row-label-gaia,
 .row-gaia .control-gaia.control-label-field-gaia,
 .gaia-argoui-app-info-content,
-.editablelayout-gaia{
-    background-color: #ffffff;
+.editablelayout-gaia {
+  background-color: #ffffff;
 }
 
 /* 入力欄の背景色を変更、角丸に変更 */
 .showlayout-gaia .row-gaia .control-value-gaia {
-    background-color: #f2f1ee99;
-    border-radius: 4px;
+  background-color: #f2f1ee99;
+  border-radius: 4px;
 }
 
 /* 表のレイアウトを調整 */
 .subtable-label-gaia {
-    background-color: #989898;
-    border-color: #989898;
-    height: 30px;
-    color: #fff;
-    box-sizing: border-box;
-    text-align: left;
-    font-weight: 400;
-    font-size: 13px;
-    white-space: nowrap;
-    border-width: 2px 2px 2px 0;
+  background-color: #989898;
+  border-color: #989898;
+  height: 30px;
+  color: #fff;
+  box-sizing: border-box;
+  text-align: left;
+  font-weight: 400;
+  font-size: 13px;
+  white-space: nowrap;
+  border-width: 2px 2px 2px 0;
 }
