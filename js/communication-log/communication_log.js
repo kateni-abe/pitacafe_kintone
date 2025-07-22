@@ -94,8 +94,8 @@
   kintone.events.on(['app.record.create.show', 'app.record.edit.show', 'app.record.detail.show'], function (e) {
     // --- ボタンの生成 ---
     const buttons = {
-      ButtonA: createButton('ButtonA', '法人・園'),
-      ButtonB: createButton('ButtonB', '学生・保育者'),
+      ButtonA: createButton('ButtonA', '法人・園との記録'),
+      ButtonB: createButton('ButtonB', '学生・保育者との記録'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
 
