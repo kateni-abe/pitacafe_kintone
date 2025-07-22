@@ -38,7 +38,7 @@
     const fieldsForA = ['法人管理番号', '法人名', '法人担当者名', 'コース', '更新月', '法人概要'];
     const fieldsForB = ['案件一覧'];
     const fieldsForC = ['コミュニケーション履歴'];
-    const fieldsForD = ['Field_trip_インターン_申込数・参加者数', 'HOCARI_JOB_参加実績', '研修会・勉強会など_企画参加実績'];
+    const fieldsForD = ['Field_trip_インターン_申込数・参加者数', '研修会・勉強会など_企画参加実績', '貸切利用_利用日'];
     const fieldsForE = ['財務関連', '財務諸表', '財務諸表_2'];
     const fieldsForF = ['法人担当者情報'];
     const fieldsForG = ['請求書'];
