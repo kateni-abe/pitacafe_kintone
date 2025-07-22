@@ -39,7 +39,7 @@
     const fieldsForB = ['参加園リスト', '参加法人リスト'];
     const fieldsForC = ['参加者リスト', '出席者数', 'キャンセル者数', '欠席者数', '合計'];
     const fieldsForD = ['運営手配', '備品セットを検索', '備品リスト'];
-    const fieldsForE = ['予算集計', '費用明細表'];
+    const fieldsForE = ['bop', '予算集計', '費用明細表'];
     const fieldsForF = ['開催目的'];
     const fieldsForG = ['議事録・メモ'];
     const fieldsForH = ['告知関連'];
