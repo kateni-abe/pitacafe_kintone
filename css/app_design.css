@@ -24,7 +24,7 @@ button.user-link-cybozu {
   font-size: 13px !important;
 }
 
-/* 編集画面のフォントサイズ */
+/* 編集画面のフォントサイズ・角丸の設定 */
 .control-gaia .input-text-cybozu,
 .control-gaia input[type="email"],
 .control-gaia input[type="number"],
@@ -50,6 +50,7 @@ button.user-link-cybozu {
   background-color: #fff;
   color: #333;
 }
+
 
 .gaia-argoui-admin-app-flow-settings-changespace-searchbox-container
   .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,
@@ -79,6 +80,7 @@ button.user-link-cybozu {
 .tr-dialog .modal-dialog-content #linkdialog-onweb-tab-input,
 .tr-dialog .modal-dialog-content #linkdialog-text {
   box-shadow: none;
+  background-color: #f2f1ee99;
 }
 
 /* レコード詳細画面のフィールド内文字サイズを12pxに変更 */
