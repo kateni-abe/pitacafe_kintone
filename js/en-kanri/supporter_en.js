@@ -37,13 +37,38 @@
    */
   function tagView(setInfo, buttons) {
     // --- 各タブで表示するフィールドのフィールドコードを配列で管理 ---
-    const fieldsForA = ['園概要'];
+    const fieldsForA = ['園概要', 
+                        '担当者名_園', 
+                        '園長名', 
+                        '園児定員数', 
+                        '請求先', 
+                        '備考_0', 
+                        'メールアドレス_1', 
+                        '用途_1', 
+                        '備考_1', 
+                        'メールアドレス_2', 
+                        '用途_2', 
+                        '備考_2', 
+                        'メールアドレス_2', 
+                        '用途_2', 
+                        '備考_2', 
+                        '郵便番号', 
+                        '住所', 
+                        '備考_4',
+                        'パンフレット', 
+                        '写真'];
     const fieldsForB = ['案件一覧'];
     const fieldsForC = ['コミュニケーション記録'];
-    const fieldsForD = ['企画参加・集客実績'];
-    const fieldsForE = ['担当者情報'];
-    const fieldsForF = ['請求書'];
-    const fieldsForG = ['法人概要'];
+    const fieldsForD = ['Field_trip_インターン_申込数・参加者数', 
+                        '研修会・勉強会など_企画参加実績',
+                        'ぴたカフェ貸切利用'];
+    const fieldsForE = ['請求書'];
+    const fieldsForF = ['担当者情報'];
+    const fieldsForG = ['法人名検索',
+                        '法人名',
+                        '法人担当者名',
+                        'コース',
+                        '関連レコード一覧'];
 
     // 管理対象の全フィールドコードの重複をなくしたリストを作成
     const allFields = [...new Set([
@@ -123,31 +148,12 @@
   kintone.events.on(['app.record.create.show', 'app.record.edit.show', 'app.record.detail.show'], function (e) {
     // --- ボタンの生成 ---
     const buttons = {
-      ButtonA: createButton('ButtonA', '園名', 
-                            '担当者名_園', 
-                            '園長名', 
-                            '園児定員数', 
-                            '請求先', 
-                            '備考_0', 
-                            'メールアドレス_1', 
-                            '用途_1', 
-                            '備考_1', 
-                            'メールアドレス_2', 
-                            '用途_2', 
-                            '備考_2', 
-                            'メールアドレス_2', 
-                            '用途_2', 
-                            '備考_2', 
-                            '郵便番号', 
-                            '住所', 
-                            '備考_4', 
-                            'パンフレット', 
-                            '写真'),
+      ButtonA: createButton('ButtonA', '園名'),
       ButtonB: createButton('ButtonB', '案件一覧'),
       ButtonC: createButton('ButtonC', 'コミュニケーション記録'),
       ButtonD: createButton('ButtonD', '企画参加・集客実績'),
-      ButtonE: createButton('ButtonE', '園担当者情報'),
-      ButtonF: createButton('ButtonF', '請求書一覧'),
+      ButtonE: createButton('ButtonE', '請求書一覧'),
+      ButtonF: createButton('ButtonF', '園担当者情報'),
       ButtonG: createButton('ButtonG', '法人概要'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
