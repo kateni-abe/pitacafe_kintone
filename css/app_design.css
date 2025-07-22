@@ -23,6 +23,37 @@ button.user-link-cybozu {
     font-size: 13px !important;
 }
 
+/* 編集画面のフォントサイズ */
+.control-gaia .input-text-cybozu,
+.control-gaia input[type=email],
+.control-gaia input[type=number],
+.control-gaia input[type=password],
+.control-gaia input[type=tel],
+.control-gaia input[type=text],
+.control-gaia input[type=url],
+.fm-control-gaia .input-text-cybozu,
+.fm-control-gaia input[type=email],
+.fm-control-gaia input[type=number],
+.fm-control-gaia input[type=password],
+.fm-control-gaia input[type=tel],
+.fm-control-gaia input[type=text],
+.fm-control-gaia input[type=url] {
+    border-color: #e3e7e8;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 8px;
+    font-size: 13px;
+    background-color: #fff;
+    color: #333
+}
+
+.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container .gaia-argoui-admin-app-flow-settings-changespace-searchbox-selected-name,.gaia-argoui-admin-app-flow-settings-changespace-searchbox-container input[type=text],.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatedescription-textarea,.gaia-argoui-admin-app-flow-settings-templatedownload-templatedownloaddialog-templatename-input,.gaia-components-forms-input .gaia-components-forms-input-form,.gaia-components-forms-textarea .gaia-components-forms-textarea-form,.gaia-ui-appselect-keyword input[type=text],.gaia-ui-appselect-selected,.gaia-ui-fieldselect-combobox input[type=text],.gaia-ui-formmaker-control-setting-appselect-searchbox .gaia-ui-formmaker-control-setting-appselect-searchbox-input,.input-date-cybozu .input-date-text-cybozu,.input-datetime-cybozu .input-date-text-cybozu,.input-text-outer-cybozu .input-text-cybozu,.input-text-outer-cybozu .textarea-cybozu,.input-time-cybozu .input-time-text-cybozu,.ocean-ntf-filterconfig-place .goog-combobox input[type=text],.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer .ocean-ntf-placesearchbox-selected-name,.ocean-ntf-filterconfig-place .ocean-ntf-placesearchbox-outer input[type=text],.ocean-ui-comments-linkpopup-input,.recordlist-edit-decimal-gaia .recordlist-forms-number-gaia,.recordlist-edit-link-gaia .recordlist-forms-text-gaia,.recordlist-edit-multiple_line_text-gaia .recordlist-forms-textarea-gaia,.recordlist-edit-single_line_text-gaia .recordlist-forms-text-gaia,.tr-dialog .modal-dialog-content #linkdialog-email-tab-input,.tr-dialog .modal-dialog-content #linkdialog-onweb-tab-input,.tr-dialog .modal-dialog-content #linkdialog-text {
+  box-shadow: none;
+}
+
 /* レコード詳細画面のフィールド内文字サイズを12pxに変更 */
 #record-gaia {
   font-size: 13px !important;
