@@ -37,7 +37,7 @@ button.user-link-cybozu {
 
 /* ヘッダーのカラー変更 */
 .qJNJu {
-    background: #ffffff;
+    background: #ffffff !important;
 }
 
 /* レコード詳細画面の背景を白色に変更*/
