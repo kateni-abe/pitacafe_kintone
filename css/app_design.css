@@ -35,6 +35,11 @@ button.user-link-cybozu {
   height: 100%; 
 }
 
+/* ヘッダーのカラー変更 */
+.qJNJu {
+    background: #ffffff;
+}
+
 /* レコード詳細画面の背景を白色に変更*/
 #record-gaia,
 .showlayout-gaia,
