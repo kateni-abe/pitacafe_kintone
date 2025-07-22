@@ -37,7 +37,7 @@
    */
   function tagView(setInfo, buttons) {
     // --- 各タブで表示するフィールドのフィールドコードを配列で管理 ---
-    const fieldsForA = ['園概要', 
+    const fieldsForA = ['園名', 
                         '担当者名_園', 
                         '園長名', 
                         '園児定員数', 
@@ -57,14 +57,32 @@
                         '備考_4',
                         'パンフレット', 
                         '写真'];
-    const fieldsForB = ['案件一覧'];
-    const fieldsForC = ['コミュニケーション記録'];
-    const fieldsForD = ['Field_trip_インターン_申込数・参加者数', 
+    const fieldsForB = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        '案件一覧'];
+    const fieldsForC = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        'コミュニケーション記録'];
+    const fieldsForD = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        'Field_trip_インターン_申込数・参加者数', 
                         '研修会・勉強会など_企画参加実績',
                         'ぴたカフェ貸切利用'];
-    const fieldsForE = ['請求書'];
-    const fieldsForF = ['担当者情報'];
-    const fieldsForG = ['法人名検索',
+    const fieldsForE = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        '請求書'];
+    const fieldsForF = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        '担当者情報'];
+    const fieldsForG = ['園名', 
+                        '担当者名_園', 
+                        '園長名',
+                        '法人名検索',
                         '法人名',
                         '法人担当者名',
                         'コース',
