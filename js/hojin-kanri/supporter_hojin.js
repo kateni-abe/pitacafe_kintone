@@ -16,12 +16,14 @@
       height: '35px',
       width: 'auto',
       minWidth: '100px',
-      borderRadius: '10px 10px 0px 0px',
+      borderRadius: '4px 4px 4px 4px',
       backgroundColor: 'white',
       border: '1px solid #CCCCCC',
       fontSize: '13px',
       paddingLeft: '10px',
       paddingRight: '10px',
+      marginLeft: '2px',
+      marginRight: '2px',
       cursor: 'pointer',
       flexShrink: 0
     });
