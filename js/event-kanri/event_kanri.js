@@ -19,7 +19,7 @@
       borderRadius: '10px 10px 0px 0px',
       backgroundColor: 'white',
       border: '1px solid #CCCCCC',
-      fontSize: '12px',
+      fontSize: '13px',
       paddingLeft: '10px',
       paddingRight: '10px',
       cursor: 'pointer',
