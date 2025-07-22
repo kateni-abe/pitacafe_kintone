@@ -1,6 +1,4 @@
 body {
-    display: flex;
-    align-items: center;
     font-size: 14px;
 }
 
@@ -8,8 +6,6 @@ body {
 .listView-control-gaia,
 .recordlist-gaia,
 button.recordlist-username-gaia {
-    display: flex;
-    align-items: center;
     font-size: 12px !important;
 }
 
