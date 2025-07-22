@@ -1,6 +1,5 @@
 /* レコード一覧のヘッダーと各セルの文字サイズを12ptに変更 */
-.recordlist-header-cell-gaia,
-.recordlist-cell-gaia {
+.listView-control-gaia,.recordlist-gaia  {
   font-size: 12px !important;
 }
 
