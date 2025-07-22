@@ -9,9 +9,16 @@ button.recordlist-username-gaia,.control-label-gaia, .fm-canvas-gaia .input-labe
     font-size: 12px !important;
 }
 
-/* レコード詳細画面のフィールド内文字サイズを12ptに変更*/
+/* レコード詳細画面のフィールド内文字サイズを12ptに変更 */
 #record-gaia {
   font-size: 12px !important;
+}
+
+/* 文字の上下中央揃え */
+.value-gaia {
+  display: flex;
+  align-items: center;
+  height: 100%; 
 }
 
 /* レコード詳細画面の背景を白色に変更*/
