@@ -146,19 +146,19 @@ function tagView(setInfo) {
       kintone.app.record.setFieldShown("開催目的", true);
       kintone.app.record.setFieldShown("議事録・メモ", true);
       kintone.app.record.setFieldShown("告知関連", true);
-      ButtonAll.style.background = "#F1C40F";
+      ButtonAll.style.background = "#eaeaea";
       break;
     case "a":
-      ButtonA.style.background = "#F1C40F";
+      ButtonA.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("イベント概要", true);
       break;
     case "b":
-      ButtonB.style.background = "#F1C40F";
+      ButtonB.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("参加園リスト", true);
       kintone.app.record.setFieldShown("参加法人リスト", true);
       break;
     case "c":
-      ButtonC.style.background = "#F1C40F";
+      ButtonC.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("出席者数", true);
       kintone.app.record.setFieldShown("キャンセル者数", true);
       kintone.app.record.setFieldShown("欠席者数", true);
@@ -166,30 +166,30 @@ function tagView(setInfo) {
       kintone.app.record.setFieldShown("参加者リスト", true);
       break;
     case "d":
-      ButtonD.style.background = "#F1C40F";
+      ButtonD.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("運営手配", true);
       kintone.app.record.setFieldShown("備品セットを検索", true);
       kintone.app.record.setFieldShown("備品リスト", true);
       break;
     case "e":
-      ButtonE.style.background = "#F1C40F";
+      ButtonE.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("設営撤収", true);
       break;
     case "f":
-      ButtonF.style.background = "#F1C40F";
+      ButtonF.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("予算集計", true);
       kintone.app.record.setFieldShown("費用明細表", true);
       break;
     case "g":
-      ButtonG.style.background = "#F1C40F";
+      ButtonG.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("開催目的", true);
       break;
     case "h":
-      ButtonH.style.background = "#F1C40F";
+      ButtonH.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("議事録・メモ", true);
       break;
     case "i":
-      ButtonI.style.background = "#F1C40F";
+      ButtonI.style.background = "#eaeaea";
       kintone.app.record.setFieldShown("告知関連", true);
       break;
   }
