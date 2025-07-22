@@ -116,6 +116,10 @@ button.user-link-cybozu,
   background-color: #ffffff;
 }
 
+.row-gaia .control-gaia {
+    border-radius: 4px;
+}
+
 /* === 詳細画面の入力欄の背景色と角丸 === */
 .showlayout-gaia .row-gaia .control-value-gaia {
   background-color: #f2f1ee99;
