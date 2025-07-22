@@ -7,3 +7,7 @@ button.recordlist-username-gaia
 {
     font-size: 12px !important;
   }
+/* レコード詳細画面のフィールド内文字サイズを12ptに変更*/
+#record-gaia {
+  font-size: 12px !important;
+}
