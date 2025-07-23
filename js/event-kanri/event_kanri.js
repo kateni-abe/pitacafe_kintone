@@ -39,7 +39,7 @@
     // --- 各タブで表示するフィールドのフィールドコードを配列で管理 ---
     const fieldsForA = ['イベント概要'];
     const fieldsForB = ['参加園リスト', '参加法人リスト'];
-    const fieldsForC = ['参加者リスト', '出席者数', 'キャンセル者数', '欠席者数', '合計'];
+    const fieldsForC = ['参加者リスト', '申込み総数', '出席者数', 'キャンセル者数', '欠席者数', '合計'];
     const fieldsForD = ['運営手配'];
     const fieldsForE = ['備品セットを検索', '備品リスト'];
     const fieldsForF = ['bop', 'budget', 'result', '費用明細表'];
