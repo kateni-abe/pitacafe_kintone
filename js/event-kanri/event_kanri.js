@@ -40,16 +40,18 @@
     const fieldsForA = ['イベント概要'];
     const fieldsForB = ['参加園リスト', '参加法人リスト'];
     const fieldsForC = ['参加者リスト', '出席者数', 'キャンセル者数', '欠席者数', '合計'];
-    const fieldsForD = ['運営手配', '備品セットを検索', '備品リスト'];
-    const fieldsForE = ['bop', 'budget', 'result', '費用明細表'];
-    const fieldsForF = ['開催目的'];
-    const fieldsForG = ['議事録・メモ'];
-    const fieldsForH = ['告知関連'];
+    const fieldsForD = ['運営手配'];
+    const fieldsForE = ['備品セットを検索', '備品リスト'];
+    const fieldsForF = ['bop', 'budget', 'result', '費用明細表'];
+    const fieldsForG = ['開催目的'];
+    const fieldsForH = ['議事録・メモ'];
+    const fieldsForI = ['告知関連'];
 
     // 管理対象の全フィールドコードの重複をなくしたリストを作成
     const allFields = [...new Set([
       ...fieldsForA, ...fieldsForB, ...fieldsForC, ...fieldsForD,
-      ...fieldsForE, ...fieldsForF, ...fieldsForG, ...fieldsForH
+      ...fieldsForE, ...fieldsForF, ...fieldsForG, ...fieldsForH,
+      ...fieldsForI
     ])];
 
     // --- 1. まず、関連する全てのフィールドを非表示にする ---
@@ -107,6 +109,10 @@
         fieldsToShow = fieldsForH;
         activeButton = buttons.ButtonH;
         break;
+      case 'I':
+        fieldsToShow = fieldsForH;
+        activeButton = buttons.ButtonH;
+        break;
 
     }
     
@@ -133,10 +139,11 @@
       ButtonB: createButton('ButtonB', '参加園・参加法人'),
       ButtonC: createButton('ButtonC', '参加者'),
       ButtonD: createButton('ButtonD', '会場・備品手配'),
-      ButtonE: createButton('ButtonE', '予算管理'),
-      ButtonF: createButton('ButtonF', '開催目的'),
-      ButtonG: createButton('ButtonG', '議事録・メモ'),
-      ButtonH: createButton('ButtonH', '告知関連'),
+      ButtonE: createButton('ButtonE', '告知関連'),
+      ButtonF: createButton('ButtonF', '予算管理'),
+      ButtonG: createButton('ButtonG', '開催目的'),
+      ButtonH: createButton('ButtonH', '議事録・メモ'),
+      ButtonI: createButton('ButtonI', '告知関連'),
       ButtonAll: createButton('ButtonAll', '全表示')
     };
 
