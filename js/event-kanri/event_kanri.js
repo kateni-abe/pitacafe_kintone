@@ -109,9 +109,9 @@
         fieldsToShow = fieldsForH;
         activeButton = buttons.ButtonH;
         break;
-      case 'I':
+      case 'i':
         fieldsToShow = fieldsForH;
-        activeButton = buttons.ButtonH;
+        activeButton = buttons.ButtonI;
         break;
 
     }
