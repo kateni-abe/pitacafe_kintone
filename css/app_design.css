@@ -103,7 +103,7 @@ button.user-link-cybozu,
   box-shadow: none;
 }
 
-/* === 詳細画面の背景色を白に統一 === */
+/* === 詳細画面の背景色を黒に統一 === */
 #record-gaia,
 .showlayout-gaia,
 .row-gaia .control-gaia.control-group-gaia,
@@ -113,7 +113,7 @@ button.user-link-cybozu,
 .row-gaia .control-gaia.control-label-field-gaia,
 .gaia-argoui-app-info-content,
 .editablelayout-gaia {
-  background-color: #23282F;
+  background-color: #1E2022;
 }
 
 .control-label-gaia,
