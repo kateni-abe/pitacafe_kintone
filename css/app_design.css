@@ -163,3 +163,7 @@ body {
   align-items: center;
   height: 100%;
 }
+
+.reference-subtable-gaia td {
+    background-color: #ffffff;
+}
