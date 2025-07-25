@@ -112,7 +112,8 @@ button.user-link-cybozu,
 .subtable-row-label-gaia,
 .row-gaia .control-gaia.control-label-field-gaia,
 .gaia-argoui-app-info-content,
-.editablelayout-gaia {
+.editablelayout-gaia,
+.body-top kintone-portal-customizer-ready {
   background-color: #1E2022;
 }
 
