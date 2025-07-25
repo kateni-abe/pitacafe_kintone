@@ -123,11 +123,13 @@ body {
 }
 
 .control-label-gaia,
-.fm-canvas-gaia
-.input-label-cybozu,
+.fm-canvas-gaia,
+.group-label-gaia,
 .subtable-row-label-gaia,
 .control-value-gaia,
-.input-constraints-cybozu {
+.input-label-cybozu,
+.input-constraints-cybozu
+{
     color: #ffffff;
 }
 
