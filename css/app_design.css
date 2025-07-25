@@ -127,8 +127,9 @@ body {
 .group-label-gaia,
 .subtable-row-label-gaia,
 .input-label-cybozu,
-.input-constraints-cybozu
-.input-radio-cybozu
+.input-constraints-cybozu,
+.input-radio-cybozu,
+.gaia-app-statusbar-state-label
 {
     color: #ffffff;
 }
