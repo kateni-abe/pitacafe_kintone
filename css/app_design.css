@@ -37,6 +37,11 @@ button.user-link-cybozu,
   font-size: 13px !important;
 }
 
+/* 詳細画面のパディング */
+#record-gaia {
+  padding: 30px 30px;
+}
+
 /* === アプリの操作ボタン（保存など）のスタイル === */
 .gaia-app-statusbar-actionmenu-wrapper,
 .gaia-app-statusbar-action-label {
