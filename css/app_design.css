@@ -119,7 +119,8 @@ button.user-link-cybozu,
 .control-label-gaia,
 .fm-canvas-gaia
 .input-label-cybozu,
-.subtable-row-label-gaia {
+.subtable-row-label-gaia,
+.control-value-gaia {
     color: #fff;
 }
 
