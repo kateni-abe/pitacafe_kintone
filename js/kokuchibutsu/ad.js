@@ -56,6 +56,7 @@
     // --- 2. 全てのボタンの背景色をリセット ---
     Object.values(buttons).forEach(button => {
       button.style.background = 'white';
+      button.style.color = '#333333';
     });
 
     // --- 3. 選択されたタブに応じて、表示するフィールドを決定し、ボタンをハイライト ---
@@ -83,7 +84,8 @@
     
     // 選択されたボタンの背景色を変更
     if (activeButton) {
-      activeButton.style.background = '#eaeaea';
+      activeButton.style.background = '#989898';
+      activeButton.style.color = '#ffffff';
     }
 
     // --- 4. 選択されたフィールドを表示する ---
