@@ -113,7 +113,14 @@ button.user-link-cybozu,
 .row-gaia .control-gaia.control-label-field-gaia,
 .gaia-argoui-app-info-content,
 .editablelayout-gaia {
-  background-color: #ffffff;
+  background-color: #23282F;
+}
+
+.control-label-gaia,
+.fm-canvas-gaia
+.input-label-cybozu,
+.subtable-row-label-gaia {
+    color: #fff;
 }
 
 .row-gaia .control-gaia {
