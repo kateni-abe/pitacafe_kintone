@@ -14,7 +14,7 @@
     // ボタン要素を作成
     var linkButton = document.createElement('a');
     linkButton.id = 'my_custom_link_button';
-    linkButton.href = 'https://sites.google.com/recrun.net/lmenberstokintone/%E3%83%9B%E3%83%BC%E3%83%A0';
+    linkButton.href = 'https://sites.google.com/recrun.net/lmenberstokintone?usp=sharing';
     linkButton.textContent = 'Lメンバーズから学生情報を登録する'; // ボタンに表示するテキスト
     linkButton.target = '_blank'; // リンクを新しいタブで開く
     linkButton.rel = 'noopener noreferrer'; // セキュリティ対策
