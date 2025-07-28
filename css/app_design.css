@@ -122,7 +122,9 @@ body {
   background-color: #23282F;
 }
 
+/* 文字色を白に変更 */
 .control-label-gaia,
+.control-value-gaia,
 .fm-canvas-gaia,
 .group-label-gaia,
 .subtable-row-label-gaia,
@@ -130,6 +132,7 @@ body {
 .input-constraints-cybozu,
 .input-radio-cybozu,
 .gaia-app-statusbar-state-label
+
 {
     color: #ffffff;
 }
