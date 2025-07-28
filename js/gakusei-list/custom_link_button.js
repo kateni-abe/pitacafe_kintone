@@ -21,7 +21,7 @@
 
     // ボタンのデザインを設定（kintoneの標準ボタン風）
     linkButton.className = 'gaia-ui-actionmenu-item';
-    linkButton.style.padding = '16px';
+    linkButton.style.padding = '14px 16px';
     linkButton.style.textDecoration = 'none';
     linkButton.style.backgroundColor = '#3498db'; // ボタンの色（お好みで変更可能）
     linkButton.style.color = 'white';
