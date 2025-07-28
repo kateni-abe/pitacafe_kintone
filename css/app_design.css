@@ -136,6 +136,12 @@ body {
     color: #ffffff;
 }
 
+/* ラジオボタンの文字色を白に変更 */
+.control-gaia .input-checkbox-cybozu,.control-gaia .input-radio-cybozu,.fm-control-gaia .input-checkbox-cybozu,.fm-control-gaia .input-radio-cybozu {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
 .row-gaia .control-gaia {
     border-radius: 4px;
 }
