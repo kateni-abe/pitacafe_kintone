@@ -4,12 +4,13 @@
   // --- 設定：フィールドコード ---
   const DROPDOWN_CODE = 'pitalab_status';
   const TABLE_CODE = 'pitalab_history_table';
-  const COL_ITEM_NAME = 'item_name';     // テーブル内：文字列(1行)
-  const COL_TIMESTAMP = 'timestamp';     // テーブル内：日時
-  const LATEST_STATUS_CODE = 'pitalab_latest_status';        // 最新：文字列(1行)
-  const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp';  // 最新：日時
+  const COL_ITEM_NAME = 'item_name';
+  const COL_TIMESTAMP = 'timestamp'; // テーブル内：日時
 
-  // kintoneの「日時」フィールドが受け付けるISO 8601形式（UTC）を生成
+  const LATEST_STATUS_CODE = 'pitalab_latest_status';
+  const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp'; // 最新：日時
+
+  // kintoneの「日時」フィールド用のISO 8601形式（UTC）を生成
   const getApiTime = () => {
     return new Date().toISOString(); 
   };
@@ -28,7 +29,7 @@
 
     const apiTime = getApiTime();
 
-    // 最新情報フィールド（日時型）の更新
+    // 最新情報フィールド（日時型）の更新：valueだけでOK
     if (record[LATEST_STATUS_CODE]) {
       record[LATEST_STATUS_CODE].value = statusValue;
     }
@@ -36,22 +37,17 @@
       record[LATEST_TIMESTAMP_CODE].value = apiTime;
     }
 
-    // 一覧画面（index）の時はテーブルをいじるとエラーになるので削除
+    // 一覧画面（index）の時はテーブルを削除してエラー回避
     if (event.type.includes('index')) {
       delete record[TABLE_CODE];
     } else {
-      // 詳細画面：テーブルに行を追加。ここで「type」を明示しないと画像のエラーが出る
+      // 詳細・新規画面：テーブルに追記。
+      // 【重要】changeイベントでは type を含めるとエラーになるため、value のみに修正
       if (!record[TABLE_CODE].value) record[TABLE_CODE].value = [];
       record[TABLE_CODE].value.push({
         value: {
-          [COL_ITEM_NAME]: {
-            type: 'SINGLE_LINE_TEXT', // 文字列(1行)の型を指定
-            value: statusValue
-          },
-          [COL_TIMESTAMP]: {
-            type: 'DATETIME',          // 日時の型を指定
-            value: apiTime
-          }
+          [COL_ITEM_NAME]: { value: statusValue },
+          [COL_TIMESTAMP]: { value: apiTime }
         }
       });
     }
@@ -72,6 +68,7 @@
 
       const currentTable = getResp.record[TABLE_CODE].value || [];
 
+      // API（PUT）の時はこの構造でOK
       await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', {
         app: kintone.app.getId(),
         id: recordId,
@@ -89,7 +86,6 @@
           }
         }
       });
-      console.log('API更新成功');
     } catch (err) {
       console.error('API更新失敗:', err);
     }
