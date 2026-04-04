@@ -1,22 +1,15 @@
 (() => {
   'use strict';
 
+  // --- 設定：フィールドコード ---
   const DROPDOWN_CODE = 'pitalab_status';
   const TABLE_CODE = 'pitalab_history_table';
-  const COL_ITEM_NAME = 'item_name';
-  const COL_TIMESTAMP = 'timestamp'; // "日時"フィールド
-  const LATEST_STATUS_CODE = 'pitalab_latest_status';
-  const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp';
+  const COL_ITEM_NAME = 'item_name';     // テーブル内：文字列(1行)
+  const COL_TIMESTAMP = 'timestamp';     // テーブル内：日時
+  const LATEST_STATUS_CODE = 'pitalab_latest_status';        // 最新：文字列(1行)
+  const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp';  // 最新：日時
 
-  // UI表示用（日本時間）のフォーマット関数
-  const getDisplayTime = () => {
-    const d = new Date();
-    const pad = (n) => n < 10 ? '0' + n : n;
-    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  };
-
-  // REST API用（ISO 8601 / UTC）のフォーマット関数
-  // 日時フィールドにはこれが必須！
+  // kintoneの「日時」フィールドが受け付けるISO 8601形式（UTC）を生成
   const getApiTime = () => {
     return new Date().toISOString(); 
   };
@@ -27,39 +20,49 @@
     `app.record.index.edit.change.${DROPDOWN_CODE}`
   ];
 
-  // 1. 画面上での変更（UI反映）
+  // 1. 画面上での値変更時の処理
   kintone.events.on(changeEvents, (event) => {
     const record = event.record;
     const statusValue = record[DROPDOWN_CODE].value;
     if (!statusValue) return event;
 
-    const displayTime = getDisplayTime();
     const apiTime = getApiTime();
 
-    // 最新情報フィールドの更新（画面上はISO形式でもkintoneがよしなに解釈してくれる）
-    if (record[LATEST_STATUS_CODE]) record[LATEST_STATUS_CODE].value = statusValue;
-    if (record[LATEST_TIMESTAMP_CODE]) record[LATEST_TIMESTAMP_CODE].value = apiTime;
+    // 最新情報フィールド（日時型）の更新
+    if (record[LATEST_STATUS_CODE]) {
+      record[LATEST_STATUS_CODE].value = statusValue;
+    }
+    if (record[LATEST_TIMESTAMP_CODE]) {
+      record[LATEST_TIMESTAMP_CODE].value = apiTime;
+    }
 
+    // 一覧画面（index）の時はテーブルをいじるとエラーになるので削除
     if (event.type.includes('index')) {
-      delete record[TABLE_CODE]; // 一覧画面エラー回避
+      delete record[TABLE_CODE];
     } else {
-      // 詳細画面：画面上の操作なので、ISO形式で渡せばOK
+      // 詳細画面：テーブルに行を追加。ここで「type」を明示しないと画像のエラーが出る
       if (!record[TABLE_CODE].value) record[TABLE_CODE].value = [];
       record[TABLE_CODE].value.push({
         value: {
-          [COL_ITEM_NAME]: { value: statusValue },
-          [COL_TIMESTAMP]: { value: apiTime } 
+          [COL_ITEM_NAME]: {
+            type: 'SINGLE_LINE_TEXT', // 文字列(1行)の型を指定
+            value: statusValue
+          },
+          [COL_TIMESTAMP]: {
+            type: 'DATETIME',          // 日時の型を指定
+            value: apiTime
+          }
         }
       });
     }
     return event;
   });
 
-  // 2. 一覧画面保存後のAPI更新（ここが本番）
+  // 2. 一覧画面保存後のAPI更新
   kintone.events.on('app.record.index.edit.submit.success', async (event) => {
     const recordId = event.recordId;
     const statusValue = event.record[DROPDOWN_CODE].value;
-    const apiTime = getApiTime(); // API用の時間を生成
+    const apiTime = getApiTime();
 
     try {
       const getResp = await kintone.api(kintone.api.url('/k/v1/record.json', true), 'GET', {
@@ -69,7 +72,7 @@
 
       const currentTable = getResp.record[TABLE_CODE].value || [];
 
-      const body = {
+      await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', {
         app: kintone.app.getId(),
         id: recordId,
         record: {
@@ -79,20 +82,17 @@
               {
                 value: {
                   [COL_ITEM_NAME]: { value: statusValue },
-                  [COL_TIMESTAMP]: { value: apiTime } // ISO形式で確実に届ける
+                  [COL_TIMESTAMP]: { value: apiTime }
                 }
               }
             ]
           }
         }
-      };
-
-      await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', body);
-      console.log('APIによるテーブル更新が成功しました');
+      });
+      console.log('API更新成功');
     } catch (err) {
       console.error('API更新失敗:', err);
     }
-
     return event;
   });
 })();
