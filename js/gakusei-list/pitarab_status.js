@@ -8,7 +8,7 @@
   const LATEST_STATUS_CODE = 'pitalab_latest_status';
   const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp';
 
-  // 1. 値が変更された時の処理（UIへの反映）
+  // 1. 値が変更された時の処理
   const changeEvents = [
     `app.record.create.change.${DROPDOWN_CODE}`,
     `app.record.edit.change.${DROPDOWN_CODE}`,
@@ -23,12 +23,16 @@
     const now = new Date();
     const timestampStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-    // 最新情報フィールドは、一覧でも詳細でも常に更新（UI反映）
-    record[LATEST_STATUS_CODE].value = statusValue;
-    record[LATEST_TIMESTAMP_CODE].value = timestampStr;
+    // 最新情報フィールドの更新
+    if (record[LATEST_STATUS_CODE]) record[LATEST_STATUS_CODE].value = statusValue;
+    if (record[LATEST_TIMESTAMP_CODE]) record[LATEST_TIMESTAMP_CODE].value = timestampStr;
 
-    // 詳細画面/新規作成画面の時だけ、テーブルを直接書き換える
-    if (event.type.includes('index') === false) {
+    // --- ここが重要 ---
+    if (event.type.includes('index')) {
+      // 一覧画面（index）の時は、エラー回避のためにテーブル項目をオブジェクトから「消す」
+      delete record[TABLE_CODE];
+    } else {
+      // 詳細画面の時だけテーブルに直接追加
       if (!record[TABLE_CODE].value) record[TABLE_CODE].value = [];
       record[TABLE_CODE].value.push({
         value: {
@@ -41,37 +45,45 @@
     return event;
   });
 
-  // 2. 一覧画面での保存成功後、裏側でテーブルをAPI更新する
-  kintone.events.on('app.record.index.edit.submit.success', (event) => {
-    const record = event.record;
+  // 2. 一覧画面での保存成功後、APIでテーブルを裏側から更新
+  kintone.events.on('app.record.index.edit.submit.success', async (event) => {
     const recordId = event.recordId;
-    const statusValue = record[DROPDOWN_CODE].value;
-    const timestampStr = record[LATEST_TIMESTAMP_CODE].value;
+    const statusValue = event.record[DROPDOWN_CODE].value;
+    const timestampStr = event.record[LATEST_TIMESTAMP_CODE].value;
 
-    // APIを使って、一覧画面からは触れないテーブルを直接更新
-    const body = {
-      app: kintone.app.getId(),
-      id: recordId,
-      record: {
-        [TABLE_CODE]: {
-          value: [
-            ...record[TABLE_CODE].value, // 既存の行を保持
-            {
-              value: {
-                [COL_ITEM_NAME]: { value: statusValue },
-                [COL_TIMESTAMP]: { value: timestampStr }
+    try {
+      // 現在のレコード情報を取得（既存のテーブル内容を壊さないため）
+      const getResp = await kintone.api(kintone.api.url('/k/v1/record.json', true), 'GET', {
+        app: kintone.app.getId(),
+        id: recordId
+      });
+
+      const currentTable = getResp.record[TABLE_CODE].value;
+
+      // テーブルに新しい行を足して更新
+      const body = {
+        app: kintone.app.getId(),
+        id: recordId,
+        record: {
+          [TABLE_CODE]: {
+            value: [
+              ...currentTable,
+              {
+                value: {
+                  [COL_ITEM_NAME]: { value: statusValue },
+                  [COL_TIMESTAMP]: { value: timestampStr }
+                }
               }
-            }
-          ]
+            ]
+          }
         }
-      }
-    };
+      };
 
-    return kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', body).then(() => {
-      return event;
-    }).catch((err) => {
-      console.error('テーブルのAPI更新に失敗しました', err);
-      return event;
-    });
+      await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', body);
+    } catch (err) {
+      console.error('API更新エラー:', err);
+    }
+
+    return event;
   });
 })();
