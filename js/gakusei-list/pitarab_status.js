@@ -8,13 +8,20 @@
   const LATEST_STATUS_CODE = 'pitalab_latest_status';
   const LATEST_TIMESTAMP_CODE = 'pitalab_latest_timestamp';
 
-  // 現在時刻をフォーマットする共通関数
-  const getNowStr = () => {
-    const now = new Date();
-    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  // kintoneの「日時」フィールドと「文字列」両方に対応するフォーマット関数
+  const getKintoneDateTime = () => {
+    const d = new Date();
+    // 日本時間でフォーマットを整える
+    const pad = (n) => n < 10 ? '0' + n : n;
+    const dateStr = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const timeStr = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    
+    // 文字列フィールドなら "2026-04-04 14:30:00"
+    // 日時フィールドなら REST APIでは ISO形式 "2026-04-04T14:30:00Z" (UTC) が無難やけど、
+    // 日本時間のまま "2026-04-04T14:30:00+09:00" と書くのが一番確実
+    return `${dateStr}T${timeStr}+09:00`;
   };
 
-  // 1. 値が変更された時の処理
   const changeEvents = [
     `app.record.create.change.${DROPDOWN_CODE}`,
     `app.record.edit.change.${DROPDOWN_CODE}`,
@@ -26,39 +33,32 @@
     const statusValue = record[DROPDOWN_CODE].value;
     if (!statusValue) return event;
 
-    const timestampStr = getNowStr();
+    const timestampStr = getKintoneDateTime();
 
-    // 最新情報フィールドの更新
     if (record[LATEST_STATUS_CODE]) record[LATEST_STATUS_CODE].value = statusValue;
     if (record[LATEST_TIMESTAMP_CODE]) record[LATEST_TIMESTAMP_CODE].value = timestampStr;
 
-    // 一覧画面（index）の時はテーブルをいじるとエラーになるので削除
     if (event.type.includes('index')) {
-      delete record[TABLE_CODE];
+      delete record[TABLE_CODE]; // 一覧画面でのエラー回避
     } else {
-      // 詳細画面/作成画面の時だけテーブルに直接追加
       if (!record[TABLE_CODE].value) record[TABLE_CODE].value = [];
       record[TABLE_CODE].value.push({
         value: {
-          [COL_ITEM_NAME]: { type: 'SINGLE_LINE_TEXT', value: statusValue },
-          [COL_TIMESTAMP]: { type: 'SINGLE_LINE_TEXT', value: timestampStr }
+          [COL_ITEM_NAME]: { value: statusValue },
+          [COL_TIMESTAMP]: { value: timestampStr }
         }
       });
     }
-
     return event;
   });
 
-  // 2. 一覧画面での保存成功後、APIでテーブルを更新
   kintone.events.on('app.record.index.edit.submit.success', async (event) => {
     const recordId = event.recordId;
     const statusValue = event.record[DROPDOWN_CODE].value;
-    
-    // 【重要】画面から拾うのではなく、ここで改めて時間を生成する
-    const timestampStr = getNowStr();
+    const timestampStr = getKintoneDateTime();
 
     try {
-      // 現在のレコード情報を取得（既存のテーブルを壊さないため）
+      // 現在のレコードを再取得（テーブルの既存データを保持するため）
       const getResp = await kintone.api(kintone.api.url('/k/v1/record.json', true), 'GET', {
         app: kintone.app.getId(),
         id: recordId
@@ -66,8 +66,7 @@
 
       const currentTable = getResp.record[TABLE_CODE].value || [];
 
-      // APIでテーブルに追記
-      await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', {
+      const body = {
         app: kintone.app.getId(),
         id: recordId,
         record: {
@@ -77,18 +76,21 @@
               {
                 value: {
                   [COL_ITEM_NAME]: { value: statusValue },
-                  [COL_TIMESTAMP]: { value: timestampStr } // 確実に値を入れる！
+                  [COL_TIMESTAMP]: { value: timestampStr }
                 }
               }
             ]
           }
         }
-      });
-      
-      // API更新後は一覧画面をリロードして反映を確認（必要に応じて）
-      // location.reload(); 
+      };
+
+      console.log('API送信データ:', JSON.stringify(body, null, 2));
+      await kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', body);
+      console.log('テーブル更新成功！');
     } catch (err) {
-      console.error('API更新エラー:', err);
+      console.error('API更新に失敗しました。詳細:', err);
+      // 万が一エラーが出た場合、詳細をアラートで出す（デバッグ用）
+      if (err.message) alert('エラー発生: ' + err.message);
     }
 
     return event;
