@@ -116,8 +116,8 @@ button.user-link-cybozu,
 .fm-canvas-gaia .input-label-cybozu,
 .subtable-row-label-gaia,
 .row-gaia .control-gaia.control-label-field-gaia,
-.gaia-argoui-app-info-content,
 .editablelayout-gaia,
+
 body {
   background-color: #23282F;
 }
@@ -131,7 +131,6 @@ body {
 .input-constraints-cybozu,
 .input-radio-cybozu,
 .gaia-app-statusbar-state-label
-.gaia-argoui-app-info-content
 {
     color: #ffffff;
 }
